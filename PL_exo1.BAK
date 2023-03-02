@@ -1,0 +1,23 @@
+Predicates
+nondeterm animal(symbol)
+nondeterm herbivore(symbol)
+nondeterm cruel(symbol)
+nondeterm carnivore(symbol)
+nondeterm mange(symbol,symbol)
+nondeterm boire(symbol,symbol)
+nondeterm consomme(symbol,symbol)
+
+Clauses
+animal(chevre).
+animal(loup).
+herbivore(chevre).
+cruel(loup).
+
+carnivore(X):-cruel(X);herbivore(Y),mange(X,Y).
+mange(X,viande):-carnivore(X).
+mange(X,herbe):-herbivore(X).
+boire(X,eau):-herbivore(X);carnivore(X).
+consomme(X,Y):-mange(X,Y);boire(X,Y).
+
+Goal
+cruel(X),consomme(X,Y).
